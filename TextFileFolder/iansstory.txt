@@ -1,0 +1,1 @@
+Hello Everyone, my name is Ian Carmichael, and I'm using VIM for the first time. I'll be honest, I find this antequated method of text entry to be disturbing, but I imagine I'll get used to it in time. This is enough textual input to complete this assignment.
