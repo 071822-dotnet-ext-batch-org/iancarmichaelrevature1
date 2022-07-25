@@ -6,6 +6,29 @@ namespace RPSConsole2
     {
         static void Main(string[] args)
         {
+
+            //create an instance of a Player
+            Player p1 = new Player();
+            p1.Fname = "Ian";
+            p1.Lname = "Carmichael";
+            p1.myDoB = new DateTime(1990, 05, 08);
+
+            Console.WriteLine($"The player's name is {p1.Fname} {p1.Lname} and his birthdau is {p1.myDoB.ToShortDateString()}");
+            p1.SetAge(109);
+            Console.WriteLine("The player's age is {p1.getAge}");
+            p1.Wins = 1;
+            int wins = p1.Wins;
+
+            Console.WriteLine($"{p1.Fname} has {p1.Wins}.");
+
+
+
+
+//create some players
+
+
+
+
         void ColoredWriteLine(string text, ConsoleColor color)
             {
                 Console.ForegroundColor = color;
@@ -23,7 +46,6 @@ namespace RPSConsole2
                 var maxLength = 15;
                 int computerChoice = 0;
                 int player1Choice = 0;
-                int numberOfTies = 0;
                 string player1Name = "";
                 string computerName = ""; 
                 string player1ChoiceStr = "";
@@ -54,6 +76,7 @@ namespace RPSConsole2
 myGoTo:
             int player1Wins = 0;
             int computerWins = 0;
+            int numberOfTies = 0;
             ColoredWriteLine($"Welcome to Rock Paper Scissor, {player1Name}!", ConsoleColor.Cyan);
 
 // This loop is for each beginning of a game.
@@ -80,8 +103,8 @@ myGoTo:
                         if(player1Choice == computerChoice)
                         {
 //tell the user the round resulted in a tie and loop to reprompt
-                                ColoredWriteLine($"This round was a tie!\nLet's try again, shall we?", ConsoleColor.Blue);
                                 numberOfTies++; // ++ increments the int by exactly 1.
+                                ColoredWriteLine($"This round was a tie!\nThere's been {numberOfTies} so far\nLet's try again, shall we?", ConsoleColor.Blue);
                         }
                         else if(player1Choice == 1 && computerChoice == 3 || 
                                 player1Choice == 2 && computerChoice == 1 ||
@@ -114,8 +137,8 @@ myGoTo:
                     if (String.Equals("Y", playAgain, StringComparison.OrdinalIgnoreCase))
                     {
                             ColoredWriteLine($"Taking it from the top!", ConsoleColor.DarkYellow);
-                    isTie = true;
-                    goto myGoTo;
+                            isTie = true;
+                            goto myGoTo;
 
                     }
                     else
