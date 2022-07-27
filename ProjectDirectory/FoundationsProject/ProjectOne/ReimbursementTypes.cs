@@ -11,7 +11,7 @@ namespace ProjectOne
         enum ReimbursementType
         {
             FOOD = 1,
-            LODING = 2,
+            LODGING = 2,
             TRAVEL = 3,
             OTHER = 4
         }
