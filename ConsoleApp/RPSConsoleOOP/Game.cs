@@ -7,7 +7,11 @@ namespace RpsConsole2
 {
     public class Game
     {
-        public String P1choice{get; set;}
-        public String P2choice{get; set;}
+        public Player GameWinner { get; set; }
+        public DateTime GameDate { get; set; }
+        public int numberOfTies { get; set; }
+
+        public Player P1{get; set;}
+        public Player P2{get; set;}
     }
 }

@@ -8,6 +8,11 @@ namespace RpsConsole2
 {
     public class RockPaperScissors
     {
-        enum Selection {Rock, Paper, Scissors}
+        enum Selection
+        {
+        ROCK = 1, 
+        PAPER = 2, 
+        SCISSORS = 3,
+        }
     }
 }

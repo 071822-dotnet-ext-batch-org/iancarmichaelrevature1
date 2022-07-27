@@ -20,7 +20,9 @@ namespace RpsConsole2
 
             // Console.WriteLine($"{p1.Fname} has {p1.Wins} wins");
 
-
+            List<Game> games = new List<Game>();
+            List<Player> players = new List<Player>():
+            List<Rounds> rounds = new List<Round>();
 
 
 
@@ -45,9 +47,11 @@ namespace RpsConsole2
             //this loop is for each beginning of a game.
             while (true)
             {
-                int computerChoice = -1;
+                Game game = new Game();
+
+                //int computerChoice = -1;
                 Random rand = new Random();// the Random class gets us a pseudorandom decimal between 0 and 1.
-                int player1Choice = -1;
+                //int player1Choice = -1;
                 int player1wins = 0;//how many rounds p1 has won
                 int computerWins = 0;//how many rounds the compouter has won
                 int numberOfTies = 0;//how many ties there have been
@@ -60,7 +64,7 @@ namespace RpsConsole2
 
                 // get the users name
                 Console.WriteLine("What is your name?");
-                p1.Fname = Console.ReadLine();
+                game.P1.Fname = Console.ReadLine();
 
                 Console.WriteLine($"Welcome to R-P-S Game, {p1.Fname}");
 

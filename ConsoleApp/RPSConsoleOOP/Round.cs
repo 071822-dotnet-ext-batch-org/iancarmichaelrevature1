@@ -7,6 +7,7 @@ namespace RpsConsole2
 {
     public class Round
     {
+        public RockPaperScissors
         public int playerWinsCounter
         {
             get
