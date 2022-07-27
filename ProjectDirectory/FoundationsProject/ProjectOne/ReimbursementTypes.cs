@@ -10,10 +10,10 @@ namespace ProjectOne
 // Enum of reimbursement types
         enum ReimbursementType
         {
-            Food = 1,
-            Lodging = 2,
-            Travel = 3,
-            Other = 4
+            FOOD = 1,
+            LODGING = 2,
+            TRAVEL = 3,
+            OTHER = 4
         }
 
     }
