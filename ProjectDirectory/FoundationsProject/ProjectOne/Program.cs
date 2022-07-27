@@ -45,9 +45,9 @@ the program will prompt the user to enter a valid email address*/
 
 // Console prompts the User to input the type of reimbursement they are requesting from the enum I made in ReimbursementTypes.cs
         Console.WriteLine("Please enter the type of reimbursement you are requesting: ");
-        Console.WriteLine("1. Lodging");
-        Console.WriteLine("2. Travel");
-        Console.WriteLine("3. Food");
+        Console.WriteLine("1. Food");
+        Console.WriteLine("2. Lodging");
+        Console.WriteLine("3. Travel");
         Console.WriteLine("4. Other");
 
 // Convert the user input to an integer
