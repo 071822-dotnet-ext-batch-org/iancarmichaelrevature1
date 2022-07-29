@@ -1,22 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 /*This is just the planning phase of the program.*/
 
-//v0.001 = Initial Birth of the program. (07/27/2022)
-/*v0.002 = Revised the blueprint of program to exclude redudant variables. (07/27/2022)
+//Update: v0.003: 07.28.2022;
+/*         Lessons learned today about namespaces and classes: 
+           namespace was previously ExpenseReimbursementSystem. 
+           My neural pathways are always under construction.
+           Also: I instanciated the Employee class in Program.cs
+           Also: I parameterized a constructor for Employee
+                 and reorganized my getters and setters.    */
+
+//v0.001: Initial Birth of the program. 07.27.2022;
+/*v0.002: Revised the blueprint of program to exclude redudant variables. 07.27.2022;
            Also: added some simple dialogue box functionality to Program.cs
            Also: Experimented with Properties and out parameters, I'll have 
                  a few questions going into class tomorrow~ */
 
 // PROJECT ONE: Expense reimbursement system
-
-namespace ExpenseReimbursementSystem
+namespace ProjectOne
 
 {
     class Program
     {
         static void Main(string[] args)
         {
+
+Employee employee = new Employee();
+        
 Restart1:
 // Console prompts the User to input employee ID
         Console.WriteLine("Please enter your employee ID: ");
@@ -151,7 +165,8 @@ the program will prompt the user to enter a valid email address*/
 // Console prompts the User to input the amount of reimbursement they are requesting
         Console.WriteLine("Please enter the amount of reimbursement you are requesting: ");
 
-        // if the user input is not a number, the program will prompt the user to enter a number.
+        // if the user input is not a numerical value, the program will prompt the user to re-enter the amount of reimbursement
+        double amount = Convert.ToDouble(Console.ReadLine());
         if (!int.TryParse(Console.ReadLine(), out int ReimbursementAmount))
         {
             Console.WriteLine("Please enter a number. (It may help to omit the dollar ($) sign).");
