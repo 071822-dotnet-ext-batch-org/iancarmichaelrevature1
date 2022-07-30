@@ -7,8 +7,19 @@ namespace ProjectOne
 {
     public class Reimbursement
     {
-        public double ReimbursementTypeId { get; set; }
-        public double ReimbursementAmount { get; set; }
+        private int reimbursementTypeId;
+        public int ReimbursementTypeId
+        {
+            get { return reimbursementTypeId; }
+            set { reimbursementTypeId = value; }
+        }
+
+        private double reimbursementAmount;
+        public double ReimbursementAmount
+        {
+            get { return reimbursementAmount; }
+            set { reimbursementAmount = value; }
+        }
 
     }
 }

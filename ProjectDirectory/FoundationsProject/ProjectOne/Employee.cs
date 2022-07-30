@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 /*
 .: Update: 07.28.2022; 
-After speaking with Mark after work on Thursday, I've decided to take the time to proceed with the project in C#.
-and refactor the code later after learning the technologies I'll be using in the future.
+After speaking with Mark after work on Thursday, I've decided to take the time to proceed
+with the project as far as I can with the C# I already know, and refactor the code later, 
+after learning the technologies I'll be using in the future. This contradicts my earlier
+comment/plan. Can't afford to be lazy when you're still learning.
 
 .: v0.002: 07.27.2022;
 I imagine once we get to SQL, we'll all use a database to store the data here.
@@ -69,14 +71,14 @@ namespace ProjectOne
         }
 
 //default constructor (Unsure if this is necessary)
-/*Mark's notes: "BUT if you create a parameterized constructor, 
-                 you MUST create your own defualt constructor" */
+/*Mark's notes: ". . .BUT if you create a parameterized constructor, 
+                 you MUST create your own default constructor."   */
         public Employee()
         {
 
         }
 
-// parameterized constructor (like Mark showed me)
+// parameterized constructor (like Mark showed us)
 public Employee(int employeeId, string firstName, string lastName, string fullName, string email)
         {
             this.EmployeeId = employeeId;
