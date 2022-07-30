@@ -20,6 +20,9 @@ using System.Threading.Tasks;
            isn't even being utilized by the program.            
            Also: I made a directory at the end of the program.
            TODO: Use it, or lose it, enum.        
+.:Continued later, the same day: 07.30.2022;
+           The noobish else-if monstrosity at the bottom is
+           now a proper switch statement.
 */
                  
 //v0.001:  Initial Birth of the program. 07.27.2022;
@@ -62,6 +65,9 @@ Restart1:
             goto Restart1;
         }
 
+// TODO: catch the error if the user enters a character instead of a number
+        
+
         Console.WriteLine("You entered " + employeeId + ", is this your Employee ID number? Yes or No.");
         string employeeIDAnswer = Console.ReadLine();
         // if yes continue and if no, repeat the process
@@ -89,7 +95,7 @@ Restart2:
         string fullName = firstName + " " + lastName;
 
 // ask the User if their fullName is correct
-        Console.WriteLine("Is " + fullName + " correct?");
+        Console.WriteLine("Is " + fullName + " your full name?");
         string fullNameAnswer = Console.ReadLine();
 
 // if yes continue and if no, repeat the process
@@ -238,20 +244,28 @@ We are dealing with money after all, so it's important to account for every penn
 
         Console.WriteLine(confirmation);
         string confirmationAnswer = Console.ReadLine();
+        string confirmationAnswer2 ="";
         
         if (String.Equals("Yes", confirmationAnswer, StringComparison.OrdinalIgnoreCase))
         {
             Console.Clear();
             string summary = $"Before we continue on to finalizing your reimbursment request, here's the information you've submitted thus far:\nYour full name: {e.FullName}\nYour Employee ID number: {e.EmployeeId}\nYour email address: {e.Email}\nYour reimbursement type: {reimbursementString}\nYour reimbursement amount: ${amountString}\n\nIs this correct?\n";
             Console.WriteLine(summary);
-            string confirmationAnswer2 = Console.ReadLine();
-            if (String.Equals("Yes", confirmationAnswer2, StringComparison.OrdinalIgnoreCase))
-            {
-        Console.WriteLine($"\nThank you, {e.FullName}.\nA confirmation email will be sent momentarily to {e.Email}\nPlease give our system time to process your request.");
-            }
+            confirmationAnswer2 = Console.ReadLine();
+        }
+        else
+        {
+            Console.Clear();
+            goto Restart5;
+        }
+        if (String.Equals("Yes", confirmationAnswer2, StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine($"\nThank you, {e.FullName}.\nA confirmation email will be sent momentarily to {e.Email}\nPlease give our system time to process your request.");
+        }
         if
         (String.Equals("No", confirmationAnswer2, StringComparison.OrdinalIgnoreCase))
         {
+Restart6:
             Console.WriteLine("Please Select where in the process you want to restart.");
             Console.WriteLine("1. Re-enter your Employee ID number.");
             Console.WriteLine("2. Re-enter your full name.");
@@ -260,36 +274,33 @@ We are dealing with money after all, so it's important to account for every penn
             Console.WriteLine("5. Re-enter your reimbursement amount.");
 
             int restart = Convert.ToInt32(Console.ReadLine());
-            if (restart == 1)
-            {
-                Console.Clear();
-                goto Restart1;
-            }
-            else if (restart == 2)
-            {
-                Console.Clear();
-                goto Restart2;
-            }
-            else if (restart == 3)
-            {
-                Console.Clear();                
-                goto Restart3;
-            }
-            else if (restart == 4)
-            {
-                Console.Clear();                
-                goto Restart4;
-            }
-            else if (restart == 5)
-            {
-                Console.Clear();                
-                goto Restart5;
-            }
 
+// Below is a directory 
+//(The previous else-if chain is now a much cleaner and more concise switch statement)
+            switch (restart)
+            {
+                case 1:
+                    Console.Clear();
+                    goto Restart1;
+                case 2:
+                    Console.Clear();
+                    goto Restart2;
+                case 3:
+                    Console.Clear();
+                    goto Restart3;
+                case 4:
+                    Console.Clear();
+                    goto Restart4;
+                case 5:
+                    Console.Clear();
+                    goto Restart5;
+                default:
+                    Console.WriteLine("Please enter a number between 1 and 5.");
+                    goto Restart6;
+            }
         }
 
         }
       
-        }
     }//EndOfClass
 }//EndOfNamespace
