@@ -1,0 +1,14 @@
+void miniMaxSum(int [] arr) 
+{
+    Array.Sort(arr);
+    long min = arr.Min();
+    long max = arr.Max();
+    Console.WriteLine($"{min} {max}");
+
+    long sum = 0;
+    for (long i = 0; i < arr.Length; i++)
+    {
+        sum += arr[i];
+    }
+    Console.WriteLine(sum - max - min);
+}
