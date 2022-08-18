@@ -25,11 +25,15 @@ namespace APILayer.Controllers
         }
 
         [HttpPut("UpdateStatusAsync")]
-        public async Task<ActionResult<Ticket>> UpdateStatusAsync(ApprovalDto approval)
+        public async Task<ActionResult<UpdatedTicketDto>> UpdateStatusAsync(ApprovalDto approval)
         {
-            //send the DTO to BusinessLayer
-            Ticket approvedTicket = await this._businessLayer.UpdateStatusAsync(approval);
-            return approvedTicket;
+            if (ModelState.IsValid)
+            {
+                //send the DTO to BusinessLayer
+                UpdatedTicketDto approvedTicket = await this._businessLayer.UpdateStatusAsync(approval);
+                return approvedTicket;
+            }
+            else return Conflict(approval);
         }
     }
 }

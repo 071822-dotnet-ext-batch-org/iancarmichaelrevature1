@@ -15,11 +15,11 @@ public class BizLayer
         return list;
     }
 
-    public async Task<Ticket> UpdateStatusAsync(ApprovalDto approval)
+    public async Task<UpdatedTicketDto> UpdateStatusAsync(ApprovalDto approvalDto)
     {
-        if (await this._repoLayer.IsManagerAsync(approval.employeeId))
+        if (await this._repoLayer.IsManagerAsync(approvalDto.employeeId))
         {
-            Ticket approvedTicket = await this._repoLayer.UpdateStatusAsync(approval);
+            UpdatedTicketDto approvedTicket = await this._repoLayer.UpdateStatusAsync(approvalDto.ticketId, approvalDto.approvalStatus);
             return approvedTicket;
         }
         else return null;

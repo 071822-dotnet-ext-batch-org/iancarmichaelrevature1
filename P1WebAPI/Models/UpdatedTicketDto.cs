@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class ApprovalDto
+    public class UpdatedTicketDto
     {
-        public ApprovalDto(Guid employeeId, Guid ticketId, string approvalStatus)
+        public UpdatedTicketDto(Guid ticketId, string firstName, string lastName, string approvalStatus)
         {
-            this.employeeId = employeeId;
             this.ticketId = ticketId;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.approvalStatus = approvalStatus;
         }
 
-        public Guid employeeId { get; set; }
         public Guid ticketId { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
         public string approvalStatus { get; set; }
+
     }
 }
