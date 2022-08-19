@@ -8,7 +8,7 @@ namespace Models
 {
     public class Ticket
     {
-        public Ticket(Guid ticketId, Guid employeeId_Fk, string reimbursementDescription, decimal reimbursementAmount, string approvalStatus)
+        public Ticket(Guid ticketId, Guid employeeId_Fk, string reimbursementDescription, decimal reimbursementAmount, string? approvalStatus)
         {
             this.ticketId = ticketId;
             this.employeeId_Fk = employeeId_Fk;
@@ -21,7 +21,7 @@ namespace Models
         public Guid employeeId_Fk { get; set; }
         public string reimbursementDescription { get; set; }
         public decimal reimbursementAmount { get; set; }
-        public string approvalStatus { get; set; }
+        public string? approvalStatus { get; set; }
 
     }
 }

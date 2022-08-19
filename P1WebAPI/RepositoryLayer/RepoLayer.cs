@@ -23,6 +23,29 @@ public class RepoLayer
         }
     }
 
+// present user with all ticket properties to be filled out
+    public async Task<Ticket> CreateTicketAsync(Ticket ticket)
+    {
+        SqlConnection conn = new SqlConnection("Server=tcp:ilcarmichaelrevature.database.windows.net,1433;Initial Catalog=ProjectOne;Persist Security Info=False;User ID=ilcarmichael;Password=Idontusethisforanythingelse1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        using (SqlCommand cmd = new SqlCommand($"INSERT INTO Tickets (ticketId, employeeId_fk, reimbursementDescription, reimbursementAmount, approvalStatus) VALUES (@ticketId, @employeeId, @description, @cost, @status)", conn))
+        {
+            cmd.Parameters.AddWithValue("@ticketId", ticket.ticketId);
+            cmd.Parameters.AddWithValue("@employeeId", ticket.employeeId_Fk);
+            cmd.Parameters.AddWithValue("@description", ticket.reimbursementDescription);
+            cmd.Parameters.AddWithValue("@cost", ticket.reimbursementAmount);
+            cmd.Parameters.AddWithValue("@status", ticket.approvalStatus);
+            conn.Open();
+            int ret = await cmd.ExecuteNonQueryAsync();
+            while (ret > 0)
+            {
+                return ticket;
+            }
+            conn.Close();
+            return null;
+        }
+    }
+
+
     public async Task<LoginDto> LoginAsync(LoginDto login)
     {
         SqlConnection conn = new SqlConnection("Server=tcp:ilcarmichaelrevature.database.windows.net,1433;Initial Catalog=ProjectOne;Persist Security Info=False;User ID=ilcarmichael;Password=Idontusethisforanythingelse1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
