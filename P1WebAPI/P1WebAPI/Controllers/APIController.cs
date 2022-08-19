@@ -28,6 +28,20 @@ namespace APILayer.Controllers
             return null;
         }
 
+        // asynchronously present the user with a new ticket object to be filled out
+        [HttpPost("CreateTicketAsync")]
+        public async Task<ActionResult> CreateTicketAsync(Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                Ticket newTicket = await this._businessLayer.CreateTicketAsync(ticket);
+                return Ok(newTicket);
+            }
+            return null;
+        }
+
+
+
         [HttpGet("GetStatusAsync")] // get all tickets
         [HttpGet("GetStatusAsync/{status}")] // get all tickets of status
         public async Task<ActionResult<List<Ticket>>> GetStatusAsync(string status, Guid? id)

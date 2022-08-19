@@ -30,4 +30,10 @@ public class BizLayer
         LoginDto loginDto = await this._repoLayer.LoginAsync(login);
         return loginDto;
     }
+
+    public async Task<Ticket> CreateTicketAsync(Ticket ticket)
+    {
+        Ticket newTicket = await this._repoLayer.CreateTicketAsync(ticket);
+        return newTicket;
+    }
 }
