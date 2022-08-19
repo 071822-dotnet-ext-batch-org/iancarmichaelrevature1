@@ -17,6 +17,11 @@ public class Employee
     public string email { get; set; }
     public string password { get; set; }
     public bool isManager { get; set; }
+
+    public static implicit operator Employee(LoginDto v)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 /*

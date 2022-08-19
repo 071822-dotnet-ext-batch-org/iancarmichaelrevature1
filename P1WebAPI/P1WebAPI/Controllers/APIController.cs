@@ -15,6 +15,19 @@ namespace APILayer.Controllers
             this._businessLayer = new BizLayer();
         }
 
+
+        // logs in the user asynchronously with a httppost request
+        [HttpPost("LoginUserAsync")]
+        public async Task<ActionResult> LoginUserAsync(LoginDto login)
+        {
+            if (ModelState.IsValid)
+            {
+            LoginDto loginDto = await this._businessLayer.LoginAsync(login);
+            return Ok(loginDto);
+            }
+            return null;
+        }
+
         [HttpGet("GetStatusAsync")] // get all tickets
         [HttpGet("GetStatusAsync/{status}")] // get all tickets of status
         public async Task<ActionResult<List<Ticket>>> GetStatusAsync(string status, Guid? id)
@@ -35,5 +48,8 @@ namespace APILayer.Controllers
             }
             else return Conflict(approval);
         }
+        
     }
 }
+
+
