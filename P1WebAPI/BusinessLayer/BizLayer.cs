@@ -24,4 +24,10 @@ public class BizLayer
         }
         else return null;
     }
+
+    public async Task<LoginDto> LoginAsync(LoginDto login)
+    {
+        LoginDto loginDto = await this._repoLayer.LoginAsync(login);
+        return loginDto;
+    }
 }

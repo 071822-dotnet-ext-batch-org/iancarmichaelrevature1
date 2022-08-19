@@ -23,12 +23,33 @@ public class RepoLayer
         }
     }
 
+    public async Task<LoginDto> LoginAsync(LoginDto login)
+    {
+        SqlConnection conn = new SqlConnection("Server=tcp:ilcarmichaelrevature.database.windows.net,1433;Initial Catalog=ProjectOne;Persist Security Info=False;User ID=ilcarmichael;Password=Idontusethisforanythingelse1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        using (SqlCommand cmd = new SqlCommand($"SELECT email, password FROM Employees WHERE email = @email AND password = @password", conn))
+        {
+            cmd.Parameters.AddWithValue("@email", login.email);
+            cmd.Parameters.AddWithValue("@password", login.password);
+            conn.Open();
+            SqlDataReader? ret = await cmd.ExecuteReaderAsync();
+            LoginDto? l = null;
+            if (ret.Read())
+            {
+                l = new LoginDto(ret.GetString(0), ret.GetString(1));
+                return l;
+            }
+            conn.Close();
+            return null;
+        }
+    }
+
+
     public async Task<bool> IsManagerAsync(Guid employeeId)
     {
         SqlConnection conn = new SqlConnection("Server=tcp:ilcarmichaelrevature.database.windows.net,1433;Initial Catalog=ProjectOne;Persist Security Info=False;User ID=ilcarmichael;Password=Idontusethisforanythingelse1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         using (SqlCommand cmd = new SqlCommand($"SELECT isManager FROM Employees WHERE employeeId = @id", conn))
         {
-            cmd.Parameters.AddWithValue("@id", employeeId); // this format protects against SQL Injection!!
+            cmd.Parameters.AddWithValue("@id", employeeId);
             conn.Open();
             SqlDataReader? ret = await cmd.ExecuteReaderAsync();
             if (ret.Read() && ret.GetBoolean(0))
@@ -46,7 +67,7 @@ public class RepoLayer
         SqlConnection conn = new SqlConnection("Server=tcp:ilcarmichaelrevature.database.windows.net,1433;Initial Catalog=ProjectOne;Persist Security Info=False;User ID=ilcarmichael;Password=Idontusethisforanythingelse1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         using (SqlCommand cmd = new SqlCommand($"UPDATE Tickets SET approvalStatus = @status WHERE ticketId = @ticketId", conn))
         {
-            cmd.Parameters.AddWithValue("@status", status); // this format protects against SQL Injection!!
+            cmd.Parameters.AddWithValue("@status", status);
             cmd.Parameters.AddWithValue("@ticketId", ticketId);
             conn.Open();
             int ret = await cmd.ExecuteNonQueryAsync();
@@ -80,17 +101,4 @@ public class RepoLayer
             return null;
         }
     }
-
-    /*    public async Task<Ticket> UpdateStatusAsync(Guid ticketId, string approvalStatus)
-        {
-            SqlConnection conn = new SqlConnection("Server=tcp:ilcarmichaelrevature.database.windows.net,1433;Initial Catalog=ProjectOne;Persist Security Info=False;User ID=ilcarmichael;Password=Idontusethisforanythingelse1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            using (SqlCommand cmd = new SqlCommand($"UPDATE Ticket Set approvalStatus = @approvalStatus WHERE ticketId = @ticketId", conn))
-            {
-                cmd.Parameters.AddWithValue("@ticketId", ticketId); // this format protects against SQL Injection!!
-                cmd.Parameters.AddWithValue("@approvalStatus", approvalStatus);
-                conn.Open();
-
-            }
-        }
-    */
 }
