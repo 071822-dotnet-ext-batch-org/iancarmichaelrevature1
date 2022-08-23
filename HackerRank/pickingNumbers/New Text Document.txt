@@ -1,0 +1,28 @@
+    public static int pickingNumbers(List<int> a)
+    {
+//Store count of int in a dictionary(number(*Key*), count(*Value*))
+        var dictCount = new Dictionary<int, int>();
+        foreach(int member in a) 
+        {
+            if(!dictCount.ContainsKey(member))
+            {
+                dictCount.Add(member, 0);
+            }
+            dictCount[member]++;
+        }
+
+        var max = 0;
+//A List of all the keys in the dictionary can be obtained by using the ".Keys" dot notation seen below.
+        foreach(int key in dictCount.Keys) 
+        {
+            int result = dictCount[key];
+//Set 'keyMinus' to exactly one less than the key, and set a condition to check if the keyMinus is in the dictionary.
+            int keyMinus = key - 1;
+            if(dictCount.ContainsKey(keyMinus)) 
+            {
+                result += dictCount[keyMinus];
+            }
+            max = Math.Max(max, result);
+        }
+        return max;
+    }
