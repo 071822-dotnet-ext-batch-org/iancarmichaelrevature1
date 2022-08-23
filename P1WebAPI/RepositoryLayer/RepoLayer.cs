@@ -51,13 +51,18 @@ public class RepoLayer
         SqlConnection conn = new SqlConnection("Server=tcp:ilcarmichaelrevature.database.windows.net,1433;Initial Catalog=ProjectOne;Persist Security Info=False;User ID=ilcarmichael;Password=Idontusethisforanythingelse1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         using (SqlCommand cmd = new SqlCommand($"SELECT email, password FROM Employees WHERE email = @email AND password = @password", conn))
         {
+            // the user will enter their email and password and the variables will be passed to the 
+            // database via the @ parameters
             cmd.Parameters.AddWithValue("@email", login.email);
             cmd.Parameters.AddWithValue("@password", login.password);
             conn.Open();
-            SqlDataReader? ret = await cmd.ExecuteReaderAsync();
+            // what sqldatareader does is it reads the data and returns it to the user
+            SqlDataReader? ret = await cmd.ExecuteReaderAsync(); // the execute reader method here is asigned
+            // to the ret sqldatreader variable
             LoginDto? l = null;
             if (ret.Read())
             {
+                // if the user login info is found, then the loginDto object will be created and returned to the user
                 l = new LoginDto(ret.GetString(0), ret.GetString(1));
                 return l;
             }

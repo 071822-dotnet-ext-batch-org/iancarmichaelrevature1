@@ -27,6 +27,7 @@ public class BizLayer
 
     public async Task<LoginDto> LoginAsync(LoginDto login)
     {
+        // the repository layer will validate the login info
         LoginDto loginDto = await this._repoLayer.LoginAsync(login);
         return loginDto;
     }
