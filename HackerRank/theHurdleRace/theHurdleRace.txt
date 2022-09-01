@@ -1,0 +1,12 @@
+    public static int hurdleRace(int k, int[] height)
+    {
+        int max = height.Max();
+        if (max > k)
+        {
+            return max - k;
+        }
+        else
+        {
+            return 0;
+        }
+    }
